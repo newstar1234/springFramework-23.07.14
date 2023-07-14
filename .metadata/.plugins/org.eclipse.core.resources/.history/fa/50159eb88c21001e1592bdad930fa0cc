@@ -1,0 +1,17 @@
+package com.exapmle.ex00.dependency.qualifier;
+
+public class Vips implements Restaurant {
+
+	@Override
+	public int steak() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public boolean sidebar() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

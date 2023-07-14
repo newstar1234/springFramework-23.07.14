@@ -1,0 +1,11 @@
+package com.exapmle.ex00.dependency;
+
+import org.springframework.stereotype.Component;
+
+import lombok.Data;
+import lombok.Getter;
+
+@Getter
+@Component
+@Data
+public class Restaurant {}

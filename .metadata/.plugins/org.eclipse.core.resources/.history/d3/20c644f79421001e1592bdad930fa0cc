@@ -1,0 +1,13 @@
+package com.exapmle.ex00.dependency.qualifier;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Outback implements Restaurant {
+
+	@Override
+	public boolean saladbar() {
+		return false;
+	}
+
+}

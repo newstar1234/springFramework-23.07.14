@@ -1,0 +1,16 @@
+package com.exapmle.ex00.dependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Chef {
+
+	private Restaurant restaurant;
+
+	@Autowired
+	public Chef (Restaurant restaurant) {
+		super();
+		this.restaurant = restaurant;
+	}
+
+	
+}

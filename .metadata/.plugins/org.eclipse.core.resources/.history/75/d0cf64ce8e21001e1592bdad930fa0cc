@@ -1,0 +1,20 @@
+package com.exapmle.ex00.dependency.qualifier;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+@Qualifier("outback")
+public class Outback implements Restaurant {
+
+	@Override
+	public int steak() {
+		return 80000;
+	}
+
+	@Override
+	public boolean sidebar() {
+		return false;
+	}
+
+}

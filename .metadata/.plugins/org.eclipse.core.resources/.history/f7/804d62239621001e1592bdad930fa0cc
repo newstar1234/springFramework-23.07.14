@@ -1,0 +1,45 @@
+package com.exapmle.ex00.dependency;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.extern.log4j.Log4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class RestaurantsTest {
+	@Autowired
+	@Qualifier("outback")
+	private Restaurant outback;
+	
+	@Autowired
+	@Qualifier("vips")
+	private Restaurant vips;
+
+	@Autowired
+	private Restaurant restaurant;
+
+	
+	@Test
+	public void testQualifier() {
+		log.info("=====================");
+		log.info("outback: " + outback);
+		log.info("steak price : " + outback.);
+		log.info("=====================");
+		
+		log.info("=====================");
+		log.info("computer: " + laptop);
+		log.info("screen width : " + laptop.getScreenWidth());
+		log.info("=====================");
+
+		log.info("=====================");
+		log.info("computer: " + computer);
+		log.info("screen width : " + computer.getScreenWidth());
+		log.info("=====================");
+	}
+}
