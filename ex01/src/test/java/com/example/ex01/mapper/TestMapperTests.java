@@ -1,4 +1,4 @@
-package com.example.ex01.persistense;
+package com.example.ex01.mapper;
 
 import static org.junit.Assert.fail;
 
@@ -20,34 +20,12 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class DataSourceTests {
-	
+public class TestMapperTests {
 	@Autowired
-	private DataSource datasource;
-	
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
+	private TestMapper testMapper; 
 	
 	@Test
-	public void testConnction() {
-		
-		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession(true);
-			Connection connection = sqlSession.getConnection();
-				) {
-			log.info(sqlSession);
-			log.info(connection);
-		}catch(Exception e) {
-			fail(e.getMessage());
-		}
-		
-		
-		
-		
-//		try(Connection connection =datasource.getConnection()) {
-//			log.info(connection);
-//		}catch (Exception e) {
-//			fail(e.getMessage());
-//		}
+	public void getListTest() {
+		testMapper.getList().forEach(log::info);
 	}
 }

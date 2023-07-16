@@ -1,4 +1,4 @@
-package com.example.ex01.persistense;
+package com.example.ex01.mapper;
 
 import static org.junit.Assert.fail;
 
@@ -20,34 +20,19 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class DataSourceTests {
-	
+public class TimeMapperTests {
 	@Autowired
-	private DataSource datasource;
+	private TimeMapper timemapper;
 	
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
-	
+//	@Test
+//	public void testGetTime() {
+//		log.info(timemapper.getClass().getName());
+//		log.info(timemapper.getTime());
+//	}
+//	
 	@Test
-	public void testConnction() {
-		
-		try(
-			SqlSession sqlSession = sqlSessionFactory.openSession(true);
-			Connection connection = sqlSession.getConnection();
-				) {
-			log.info(sqlSession);
-			log.info(connection);
-		}catch(Exception e) {
-			fail(e.getMessage());
-		}
-		
-		
-		
-		
-//		try(Connection connection =datasource.getConnection()) {
-//			log.info(connection);
-//		}catch (Exception e) {
-//			fail(e.getMessage());
-//		}
+	public void testGetTime2() {
+		log.info(timemapper.getClass().getName());
+		log.info(timemapper.getTime2());
 	}
 }
