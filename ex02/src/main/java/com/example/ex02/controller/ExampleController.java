@@ -128,7 +128,10 @@ public class ExampleController {
 		return "/product/showChange";
 	}
 	
-	
+	@PostMapping("/usePoint")
+	public String usePoint(@ModelAttribute("product") Product product) {
+		return "product/usePoint";
+	}
 	
 	
 }

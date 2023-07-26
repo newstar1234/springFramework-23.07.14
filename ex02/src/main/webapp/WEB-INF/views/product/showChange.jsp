@@ -24,5 +24,12 @@
 			<td><c:out value="${product.discountRate }%" /></td>
 		</tr>
 	</table>
+	<form action="/usePoint" method="post" name="discountForm">
+		<input type="hidden" name="productNumber" value="${product.productNumber }" />
+		<input type="hidden" name="productPrice" value="${product.productPrice }" />
+		<input type="submit" value="포인트를 사용하여 상품 구매하러 가기" style="display:block; margin:0 auto;" />
+	</form>
+	<br>
+	<input type="button" onclick="location.href='/sale'" value="상품 및 할인율 변경하기" style="display:block; margin:0 auto;" />
 </body>
 </html>
