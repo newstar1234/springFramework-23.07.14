@@ -8,7 +8,7 @@
 <title>포인트 결제</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="/use" method="post">
 	<input type="hidden" name="productName" />
 	<input type="hidden" name="productPrice" />
 		<table border="1" style="margin:0 auto;">
@@ -47,7 +47,7 @@
 			</tr>
 		</table>
 		<br>
-		<div>
+		<div style="text-align: center;">
 			<input type="text" name="point" placeholder="사용하실 포인트를 입력하세요." style="width:200px" />
 			<input type="submit" value="구매" />
 		</div>
@@ -63,14 +63,20 @@
 	$("input[name='productNumber']").click(function(){ 
 		const tdTags = $(this).closest("tr").children();
 		
-		$("input[name='productName']").val($(tdTags[1].text());
-		$("input[name='productPrice']").val($(tdTags[2].text());
+		$("input[name='productName']").val($(tdTags[1]).text());
+		$("input[name='productPrice']").val($(tdTags[2]).text());
 		
 	});
 		{/* 할인이 된 가격을 비교해줘야함. 원가 / 할인된 가격*/}
 	$(document).ready(function(){
-		$("input[name='produtNumber']").each(function(i,input){
+		$("input[name='productNumber']").each(function(i,input){
 			if($(input).val() == productNumber){
+				const priceTag = $(input).closest("tr").children()[2];
+				const trTag = $(input).closest("tr");
+				
+				$(trTag).css("background-color" , "red");
+				$(trTag).css("color" , "white");
+				$(priceTag).text(producrPrice);
 				
 			}
 		});

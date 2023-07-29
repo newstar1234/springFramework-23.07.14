@@ -133,5 +133,21 @@ public class ExampleController {
 		return "product/usePoint";
 	}
 	
+	@PostMapping("/use")
+	public String use(Product product, Integer point, Model model) {
+		int cash = product.getProductPrice() - point;
+		
+//		if(cash < 1 ){}  // 조건식 다른 방법
+		if(point >= product.getProductPrice()) {
+			point = product.getProductPrice();
+			cash = 0;
+		}
+		
+		model.addAttribute("product", product);
+		model.addAttribute("point", point);
+		model.addAttribute("cash", cash);
+		
+		return "product/payment"; 
+	}
 	
 }
