@@ -1,42 +1,42 @@
-package com.example.board.service;
+package com.example.board.domain.dao;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-import com.example.board.domain.dao.BoardDAO;
 import com.example.board.domain.vo.BoardVO;
+import com.example.board.mapper.BoardMapper;
 
-@Service
-public class BoardServiceImpl implements BoardService {
+@Repository
+public class BoardDAOImpl implements BoardDAO {
 
 	@Autowired
-	BoardDAO boardDAO;
+	BoardMapper boardMapper;
 	
 	@Override
 	public void register(BoardVO board) {
-		boardDAO.register(board);
+		boardMapper.insert(board);
 	}
 
 	@Override
 	public BoardVO get(Long bno) {
-		return boardDAO.get(bno);
+		return boardMapper.read(bno);
 	}
 
 	@Override
 	public boolean modify(BoardVO board) {
-		return boardDAO.modify(board);
+		return boardMapper.update(board) != 0;
 	}
 
 	@Override
 	public boolean remove(Long bno) {
-		return boardDAO.remove(bno);
+		return boardMapper.delete(bno) != 0;
 	}
 
 	@Override
 	public List<BoardVO> getList() {
-		return boardDAO.getList();
+		return boardMapper.getList();
 	}
 
 }
