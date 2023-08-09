@@ -6,11 +6,27 @@
 		FROM TABLE_BOARD
 	</select>
 	
-	<insert id="insert" parameterType="boardVO"> 
+	<insert id="insert"> 
 		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
 			SELECT SEQUENCE_BOARD.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO TABLE_BOARD(BNO, TITLE, CONTENT, WRITER)
 		VALUES (#{bno}, #{title}, #{content}, #{writer})
 	</insert>
+	
+	<select id="read" resultType="boardVO">
+		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
+		FROM TABLE_BOARD WHERE BNO= #{bno}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM TABLE_BOARD WHERE BNO = #{bno}
+	</delete>
+	
+	<update id="update">
+		UPDATE TABLE_BOARD
+		SET TITLE=#{title} , CONTENT = #{content}, WRITER = #{writer}, UPDATEDATE = SYSDATE
+		WHERE BNO = #{bno}
+	</update>
+	
 </mapper>
