@@ -59,13 +59,18 @@ public class BoardControllerTests {
 //				).andReturn().getFlashMap());
 //		}
 	
-	@Test
-	public void modifyTest() throws Exception{
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
-				.param("bno", "3")
-				.param("title", "수정한 게시글의 제목 18")
-				.param("content", "수정한 게시글의 내용 18")
-				.param("writer", "hds18")
-				).andReturn().getFlashMap());
-		}
-	}
+//	@Test
+//	public void modifyTest() throws Exception{
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+//				.param("bno", "3")
+//				.param("title", "수정한 게시글의 제목 18")
+//				.param("content", "수정한 게시글의 내용 18")
+//				.param("writer", "hds18")
+//				).andReturn().getFlashMap());
+//		}
+	
+//	@Test
+//	public void goModifyTest() throws Exception{
+//		mockMvc.perform(MockMvcRequestBuilders.get("/board/modify").param("bno", "3"));
+//	}
+}

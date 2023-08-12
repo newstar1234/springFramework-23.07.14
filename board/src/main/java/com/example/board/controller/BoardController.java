@@ -1,5 +1,7 @@
 package com.example.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,9 +51,10 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@GetMapping("/read")
-	public void read(Long bno, Model model) {
-		log.info("/read :" + bno);
+	@GetMapping({"/read", "/modify"})
+	public void read(Long bno, HttpServletRequest request, Model model) {
+		String url = request.getRequestURI();
+		log.info(url.substring(url.lastIndexOf("/")) + " : " + bno);
 		model.addAttribute("board", boardService.get(bno));
 	}
 	
@@ -74,4 +77,7 @@ public class BoardController {
 		}
 		return "redirect:/board/list";
 	}
+	
+	@GetMapping("/register")
+	public void register() {}
 }
