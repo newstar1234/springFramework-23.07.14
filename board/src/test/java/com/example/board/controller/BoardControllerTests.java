@@ -36,12 +36,36 @@ public class BoardControllerTests {
 //		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")).andReturn().getModelAndView().getModelMap());
 //	}
 	
+//	@Test
+//	public void registerTest() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+//				.param("title", "테스트 새 글 제목")
+//				.param("content", "테스트 새 글 내용")
+//				.param("writer", "newstar0812")
+//				).andReturn().getFlashMap());
+//	}
+
+//	@Test
+//	public void readTest() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/read")
+//				.param("bno", "12")
+//				).andReturn().getModelAndView().getModelMap());
+//	}
+
+//	@Test
+//	public void removeTest() throws Exception {
+//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/remove")
+//				.param("bno", "12")
+//				).andReturn().getFlashMap());
+//		}
+	
 	@Test
-	public void registerTest() throws Exception {
-		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
-				.param("title", "테스트 새 글 제목")
-				.param("content", "테스트 새 글 내용")
-				.param("writer", "newstar0812")
+	public void modifyTest() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders.post("/board/modify")
+				.param("bno", "3")
+				.param("title", "수정한 게시글의 제목 18")
+				.param("content", "수정한 게시글의 내용 18")
+				.param("writer", "hds18")
 				).andReturn().getFlashMap());
+		}
 	}
-}

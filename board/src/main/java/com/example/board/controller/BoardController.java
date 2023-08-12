@@ -49,5 +49,29 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/read")
+	public void read(Long bno, Model model) {
+		log.info("/read :" + bno);
+		model.addAttribute("board", boardService.get(bno));
+	}
 	
+	@GetMapping("/remove")
+	public String remove(Long bno, RedirectAttributes rttr) {
+		log.info("/remove :" +bno);
+		
+		if(boardService.remove(bno)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/list";
+	}
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO boardVO, RedirectAttributes rttr) {
+		log.info("/modify :" +boardVO);
+		
+		if(boardService.modify(boardVO)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/list";
+	}
 }
