@@ -1,5 +1,6 @@
 package com.example.board.service;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,9 @@ public class BoardServiceTests {
 //	public void registerTest() {
 //		BoardVO boardVO = new BoardVO();
 //		
-//		boardVO.setTitle("새로 작성한 제목");
-//		boardVO.setContent("새로 작성한 내용");
-//		boardVO.setWriter("newstar1");
+//		boardVO.setTitle("새로 작성한 제목12");
+//		boardVO.setContent("새로 작성한 내용12");
+//		boardVO.setWriter("newstar12");
 //		
 //		boardService.register(boardVO);
 //		log.info("생성된 게시글 번호 :" + boardVO.getBno());
@@ -36,7 +37,7 @@ public class BoardServiceTests {
 	
 //	@Test
 //	public void getTest() {
-//		BoardVO boardVO = boardService.get(10L);
+//		BoardVO boardVO = boardService.get(11L);
 //		if(boardVO != null) {
 //			log.info(boardVO);
 //			return;
@@ -44,14 +45,14 @@ public class BoardServiceTests {
 //		log.info("NO BOARD!");
 //	}
 	
-//	@Test
+//	@Before
 //	public void modifyTest() {
-//		BoardVO boardVO = boardService.get(0L);
+//		BoardVO boardVO = boardService.get(11L);
 //		
 //		if(boardVO == null) {log.info("NO BOARD!"); return;}
 //		
-//		boardVO.setTitle("신규 등록");
-//		boardVO.setContent("신규 등록된 게시글");
+//		boardVO.setTitle("신규 등록12");
+//		boardVO.setContent("신규 등록된 게시글12");
 //		
 //		if(boardService.modify(boardVO)) {
 //			log.info("UPDATE SUCCESS!");
@@ -60,9 +61,9 @@ public class BoardServiceTests {
 //		log.info("UPDATE FAILURE");
 //	}
 	
-//	@Test
+//	@Before
 //	public void removeTest() {
-//		BoardVO boardVO = boardService.get(9L);
+//		BoardVO boardVO = boardService.get(11L);
 //		if(boardVO == null) {log.info("NO BOARD!"); return;}
 //		
 //		if(boardService.remove(boardVO.getBno())) {
