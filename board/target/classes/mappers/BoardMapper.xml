@@ -2,8 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.mapper.BoardMapper">
 	<select id="getList" resultType="boardVO">
+	<![CDATA[ 
 		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
-		FROM TABLE_BOARD
+		FROM
+		(
+			SELECT/*+ INDEX_DESC(TABLE_BOARD, SYS_C007364)*/
+			ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
+			FROM TABLE_BOARD WHERE ROWNUM <= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum} -1) * #{amount}
+	]]>
 	</select>
 	
 	<insert id="insert"> 

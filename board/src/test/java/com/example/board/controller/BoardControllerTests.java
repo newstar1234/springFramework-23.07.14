@@ -31,10 +31,10 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
-//	@Test
-//	public void listTest() throws Exception {
-//		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")).andReturn().getModelAndView().getModelMap());
-//	}
+	@Test
+	public void listTest() throws Exception {
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list").param("pageNum", "1").param("amount", "10")).andReturn().getModelAndView().getModelMap());
+	}
 	
 //	@Test
 //	public void registerTest() throws Exception {
