@@ -40,4 +40,8 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getList(criteria);
 	}
 
+	@Override
+	public int getTotal() {
+		return boardDAO.getTotal();
+	}
 }

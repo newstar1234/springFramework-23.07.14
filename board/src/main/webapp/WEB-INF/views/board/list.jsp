@@ -10,6 +10,13 @@
 		<link rel="stylesheet" href="/resources/assets/css/main.css" />
 		<style>
 			body {transform: scale(0.8);}
+			
+			@media(max-width:918px){
+				body {transform: scale(1); overflow-x: hidden;}
+				.writer{display: none;}
+				.regDate{display:none;}
+				.updateDate{display:none;}
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -47,9 +54,28 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-							<tfoot>
-							</tfoot>
 						</table>
+						<div style="text-align: center;">
+						<c:if test="${pageDTO.prev}">
+							<a class="changePage" href="${pageDTO.startPage -1 }"><code>&lt;</code></a>
+						</c:if>
+							<c:forEach var="num" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+								<c:choose>
+									<c:when test="${pageDTO.criteria.pageNum == num}">
+										<code><c:out value="${num}"/></code>
+									</c:when>
+									<c:otherwise>
+										<a class="changePage" href="${num}"><code><c:out value="${num}"/></code></a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${pageDTO.next}">
+								<a class="changePage" href="${pageDTO.endPage + 1}"><code>&gt;</code></a>
+							</c:if>
+						</div>
+						<form name="pageForm" action="/board/list">
+							<input type="hidden" name="pageNum" value="${pageDTO.criteria.pageNum}"/>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -62,4 +88,16 @@
 	<script src="/resources/assets/js/breakpoints.min.js"></script>
 	<script src="/resources/assets/js/util.js"></script>
 	<script src="/resources/assets/js/main.js"></script>
+	<script>
+	// 페이지 이동을 하기 위해 a태그를 클릭하면 이벤트 실행
+		$("a.changePage").on("click", function(e){
+			e.preventDefault();
+			// form 태그 가져오기
+			let $form = $(document.pageForm);
+			// form 태그 자식 요소 중 pageNum이 이름인 input 태그 가져오기
+			// 기존의 value 값을 사용자가 이동하고자 하는 페이지 번호로 변경하기
+			$form.find("input[name='pageNum']").val($(this).attr("href"));
+			$form.submit();
+		});
+	</script>
 </html>
