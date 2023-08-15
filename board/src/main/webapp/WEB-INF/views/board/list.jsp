@@ -10,12 +10,16 @@
 		<link rel="stylesheet" href="/resources/assets/css/main.css" />
 		<style>
 			body {transform: scale(0.8);}
+			.big-width {display:block;}
+			.small-width {display: none;}
 			
 			@media(max-width:918px){
 				body {transform: scale(1); overflow-x: hidden;}
 				.writer{display: none;}
 				.regDate{display:none;}
 				.updateDate{display:none;}
+				.big-width {display:none;}
+				.small-width {display:block;}
 			}
 		</style>
 	</head>
@@ -47,7 +51,7 @@
 								<c:forEach var = "board" items="${boardList}">
 									<tr class="tBody">
 										<td class="bno">${board.bno}</td>
-										<td class="title"><a href="/board/read?bno=${board.bno}">${board.title}</a></td>
+										<td class="title"><a href="/board/read${pageDTO.criteria.params}&bno=${board.bno}">${board.title}</a></td>
 										<td class="writer">${board.writer}</td>
 										<td class="regDate">${board.regDate}</td>
 										<td class="updateDate">${board.updateDate}</td>
@@ -55,7 +59,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<div style="text-align: center;">
+						<div style="text-align: center;" class="big-width">
 						<c:if test="${pageDTO.prev}">
 							<a class="changePage" href="${pageDTO.startPage -1 }"><code>&lt;</code></a>
 						</c:if>
@@ -72,6 +76,15 @@
 							<c:if test="${pageDTO.next}">
 								<a class="changePage" href="${pageDTO.endPage + 1}"><code>&gt;</code></a>
 							</c:if>
+						</div>
+						<div style="text-align: center;" class="small-width">
+						<c:if test="${pageDTO.criteria.pageNum > 1}">
+							<a class="changePage" href="${pageDTO.criteria.pageNum -1 }"><code>&lt;</code></a>
+						</c:if>
+							<code><c:out value="${pageDTO.criteria.pageNum}"/></code>
+						<c:if test="${pageDTO.realEnd > pageDTO.criteria.pageNum}">
+							<a class="changePage" href="${pageDTO.criteria.pageNum + 1}"><code>&gt;</code></a>
+						</c:if>
 						</div>
 						<form name="pageForm" action="/board/list">
 							<input type="hidden" name="pageNum" value="${pageDTO.criteria.pageNum}"/>

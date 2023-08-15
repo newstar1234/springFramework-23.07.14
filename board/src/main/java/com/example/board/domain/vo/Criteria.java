@@ -1,6 +1,7 @@
 package com.example.board.domain.vo;
 
-import lombok.AllArgsConstructor;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Data;
 
 @Data
@@ -16,6 +17,11 @@ public class Criteria {
 		super();
 		this.pageNum = pageNum;
 		this.amount = amount;
+	}
+	
+	public String getParams() {
+		UriComponentsBuilder builder = UriComponentsBuilder.fromPath("").queryParam("pageNum", this.pageNum);
+		return builder.toUriString();
 	}
 	
 	
