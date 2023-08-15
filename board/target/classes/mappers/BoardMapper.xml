@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.board.mapper.BoardMapper">
+
+	<sql id="search">
+		<if test="type != null and keyword != null">
+			<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+				<foreach item="type" collection="types">
+					<trim prefix="OR">
+						<choose>
+							<when test="type == 'T'.toString()">
+								(TITLE LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'C'.toString()">
+								(CONTENT LIKE '%' || #{keyword} || '%')
+							</when>
+							<when test="type == 'W'.toString()">
+								(WRITER LIKE '%' || #{keyword} || '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
 	<select id="getList" resultType="boardVO">
-	<![CDATA[ 
-		SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
-		FROM
-		(
-			SELECT/*+ INDEX_DESC(TABLE_BOARD, SYS_C007364)*/
-			ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE
-			FROM TABLE_BOARD WHERE ROWNUM <= #{pageNum} * #{amount}
-		)
-		WHERE RN > (#{pageNum} -1) * #{amount}
-	]]>
+			SELECT BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
+			FROM
+			(
+				SELECT /*+ INDEX_DESC(TBL_BOARD, SYS_C007364)*/ 
+				ROWNUM RN, BNO, TITLE, CONTENT, WRITER, REGDATE, UPDATEDATE 
+				FROM TABLE_BOARD WHERE 
+			<include refid="search"/>
+			<![CDATA[	
+				ROWNUM <= #{pageNum} * #{amount}
+			]]>
+			)
+		<![CDATA[
+			WHERE RN  > (#{pageNum} - 1) * #{amount}
+		]]>
 	</select>
 	
 	<insert id="insert"> 
@@ -39,6 +66,9 @@
 	
 	<select id="getTotal" resultType="_int">
 		SELECT COUNT(BNO) FROM TABLE_BOARD
+		<where> 
+			<include refid="search"/>
+		</where>
 	</select>
 	
 </mapper>
