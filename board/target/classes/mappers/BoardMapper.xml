@@ -67,7 +67,9 @@
 	<select id="getTotal" resultType="_int">
 		SELECT COUNT(BNO) FROM TABLE_BOARD
 		<where> 
-			<include refid="search"/>
+			<trim suffixOverrides="AND">
+				<include refid="search"/>
+			</trim>
 		</where>
 	</select>
 	
