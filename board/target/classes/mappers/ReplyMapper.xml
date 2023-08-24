@@ -10,5 +10,20 @@
 		SELECT RNO, BNO, REPLY, REPLIER, REPLYDATE, UPDATEDATE FROM TABLE_REPLY
 		WHERE RNO = #{rno}
 	</select>
+	
+	<delete id="delete">
+		DELETE FROM TABLE_REPLY WHERE RNO = #{rno}
+	</delete>
+	
+	<delete id="deleteAll">
+		DELETE FROM TABLE_REPLY WHERE BNO = #{bno}
+	</delete>
+	
+	<update id="update">
+		UPDATE TABLE_REPLY 
+		SET REPLY = #{reply}, UPDATEDATE = SYSDATE
+		WHERE RNO = #{rno}
+	</update>
+	
 </mapper>
 
