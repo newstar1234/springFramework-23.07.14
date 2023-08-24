@@ -78,9 +78,6 @@ public class BoardController {
 		if(boardService.modify(boardVO)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-//		rttr.addAttribute("pageNum", criteria.getPageNum());
-//		rttr.addAttribute("type", criteria.getType());
-//		rttr.addAttribute("keyword", criteria.getKeyword());
 		return "redirect:/board/list" + criteria.getParams();
 	}
 	
