@@ -66,4 +66,20 @@
 	<script src="/resources/assets/js/breakpoints.min.js"></script>
 	<script src="/resources/assets/js/util.js"></script>
 	<script src="/resources/assets/js/main.js"></script>
+	<script src="/resources/assets/js/reply.js"></script>
+	<script>
+		let bno ="${board.bno}";
+		
+		console.log("===JS TEST===");
+		
+		replyService.add({
+			bno: bno,
+			reply: "모듈화 테스트",
+			replier: "newstar"
+		}, function(result){
+			console.log(result);
+		});
+		
+		
+	</script>
 </html>
