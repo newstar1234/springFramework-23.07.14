@@ -1,5 +1,7 @@
 package com.example.board.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.board.domain.vo.ReplyVO;
@@ -17,4 +19,6 @@ public interface ReplyMapper {
 	public int deleteAll(Long bno);
 //	댓글 수정
 	public int update(ReplyVO replyVO);
+//	댓글 목록 가져오기
+	public List<ReplyVO> selectAll(Long bno);
 }

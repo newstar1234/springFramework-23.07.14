@@ -25,5 +25,11 @@
 		WHERE RNO = #{rno}
 	</update>
 	
+	<select id="selectAll" resultType="replyVO">
+		SELECT RNO, BNO, REPLY, REPLIER, REPLYDATE, UPDATEDATE
+		FROM TABLE_REPLY
+		WHERE BNO = #{bno}
+	</select>
+	
 </mapper>
 

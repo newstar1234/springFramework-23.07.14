@@ -55,12 +55,17 @@ public class ReplyMapperTests {
 //		log.info(replyMapper.deleteAll(1342L));
 //	}
 	
+//	@Test
+//	public void updateTest() {
+////		수정대상 댓글
+//		ReplyVO replyVO = replyMapper.select(3L);
+//		if(replyVO != null) replyVO.setReply("수정된 댓글");
+//		
+//		log.info(replyVO == null ? "없는 댓글 입니다." : replyMapper.update(replyVO) + "건 수정!");
+//	}
+	
 	@Test
-	public void updateTest() {
-//		수정대상 댓글
-		ReplyVO replyVO = replyMapper.select(3L);
-		if(replyVO != null) replyVO.setReply("수정된 댓글");
-		
-		log.info(replyVO == null ? "없는 댓글 입니다." : replyMapper.update(replyVO) + "건 수정!");
+	public void selectAllTest() {
+		replyMapper.selectAll(1343L).forEach(log::info);
 	}
 }
